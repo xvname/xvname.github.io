@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EuropeHub GmbH - International Logistics & Warehousing</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            color: #333;
+            line-height: 1.7;
+            background-color: #f8f9fa;
+        }
+        /* 导航栏核心布局：左上Logo-中间名称-右上地址 */
+        nav {
+            background-color: #ffffff;
+            padding: 1.2rem 5%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .nav-logo {
+            width: 80px;
+            height: 80px;
+            background-color: #0a3d62;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        .nav-name {
+            text-align: center;
+        }
+        .nav-name h1 {
+            color: #0a3d62;
+            font-size: 1.8rem;
+            margin-bottom: 0.3rem;
+        }
+        .nav-name p {
+            color: #666;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .nav-address {
+            text-align: right;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        .nav-address p {
+            margin-bottom: 0.2rem;
+        }
+        .nav-address strong {
+            color: #0a3d62;
+        }
+        /* 头部横幅 */
+        .hero {
+            background: linear-gradient(rgba(10, 61, 98, 0.8), rgba(10, 61, 98, 0.8)), url("https://images.unsplash.com/photo-1590490360182-122979cd9243?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80");
+            background-size: cover;
+            background-position: center;
+            padding: 6rem 5%;
+            color: white;
+            text-align: center;
+        }
+        .hero h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+        }
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 900px;
+            margin: 0 auto 2.5rem;
+            opacity: 0.9;
+        }
+        .hero-btn {
+            padding: 1rem 2.2rem;
+            background-color: #3c6382;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .hero-btn:hover {
+            background-color: #28435a;
+            transform: translateY(-3px);
+        }
+        /* 通用模块样式 */
+        .section {
+            padding: 5rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .section-title {
+            font-size: 2.2rem;
+            color: #0a3d62;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        .section-title::after {
+            content: "";
+            width: 100px;
+            height: 4px;
+            background-color: #3c6382;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.1rem;
+            max-width: 1000px;
+            margin: 0 auto 4rem;
+            line-height: 1.8;
+        }
+        /* 专业领域模块 */
+        .services-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+        .service-card {
+            background-color: white;
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.07);
+            transition: transform 0.3s;
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background-color: #f0f5f9;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: #0a3d62;
+            font-size: 1.8rem;
+        }
+        .service-card h3 {
+            color: #0a3d62;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .service-card p {
+            color: #666;
+            line-height: 1.7;
+        }
+        /* 智能数据化系统模块 */
+        .system-section {
+            background-color: #f0f5f9;
+            margin: 3rem 0;
+        }
+        .system-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+            align-items: center;
+        }
+        .system-img {
+            flex: 1;
+            min-width: 350px;
+        }
+        .system-img img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        .system-content {
+            flex: 1;
+            min-width: 350px;
+        }
+        .system-content h3 {
+            color: #0a3d62;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+        .system-features {
+            margin-bottom: 2rem;
+        }
+        .system-features li {
+            list-style: none;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: flex-start;
+            color: #666;
+        }
+        .system-features li::before {
+            content: "✓";
+            color: #3c6382;
+            font-weight: bold;
+            margin-right: 0.8rem;
+            margin-top: 0.3rem;
+        }
+        /* 核心优势模块 */
+        .advantage-section {
+            background-color: #ffffff;
+        }
+        .advantage-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .advantage-item {
+            text-align: center;
+            padding: 2rem;
+        }
+        .advantage-icon {
+            width: 60px;
+            height: 60px;
+            background-color: #e8f4f8;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.2rem;
+            color: #0a3d62;
+            font-size: 1.5rem;
+        }
+        .advantage-item h4 {
+            color: #0a3d62;
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+        }
+        .advantage-item p {
+            color: #777;
+            font-size: 0.95rem;
+        }
+        /* 客户案例模块 */
+        .case-section {
+            background-color: #f8f9fa;
+            padding: 5rem 5%;
+        }
+        .case-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+        .case-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.07);
+            transition: transform 0.3s;
+        }
+        .case-card:hover {
+            transform: translateY(-10px);
+        }
+        .case-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+        .case-content {
+            padding: 2rem;
+        }
+        .case-tag {
+            display: inline-block;
+            background-color: #e8f4f8;
+            color: #0a3d62;
+            font-size: 0.85rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            margin-bottom: 1rem;
+        }
+        .case-content h3 {
+            color: #0a3d62;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+        .case-content p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+        .case-result {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .case-result-item {
+            background-color: #f0f5f9;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            color: #0a3d62;
+        }
+        /* 获取报价模块（替代原联系我们） */
+        .quote-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.07);
+        }
+        .quote-form h3 {
+            color: #0a3d62;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .quote-form p {
+            text-align: center;
+            color: #666;
+            margin-bottom: 2.5rem;
+            font-size: 1.1rem;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            color: #0a3d62;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            color: #333;
+        }
+        .form-group textarea {
+            min-height: 200px;
+            resize: vertical;
+        }
+        .form-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background-color: #0a3d62;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 1rem;
+        }
+        .form-btn:hover {
+            background-color: #082e48;
+        }
+        /* 合作伙伴模块 */
+        .partner-section {
+            background-color: #f8f9fa;
+            padding: 4rem 5%;
+        }
+        .partner-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .partner-logo {
+            width: 150px;
+            height: 60px;
+            background-color: white;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        /* 页脚 */
+        footer {
+            background-color: #0a3d62;
+            color: white;
+            padding: 4rem 5% 2rem;
+        }
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        .footer-logo {
+            flex: 1;
+            min-width: 250px;
+        }
+        .footer-logo .nav-logo {
+            margin-bottom: 1rem;
+            margin-left: 0;
+        }
+        .footer-logo p {
+            color: rgba(255,255,255,0.7);
+            line-height: 1.7;
+        }
+        .footer-links {
+            flex: 1;
+            min-width: 250px;
+        }
+        .footer-links h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.8rem;
+        }
+        .footer-links h4::after {
+            content: "";
+            width: 40px;
+            height: 2px;
+            background-color: #3c6382;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+        .footer-links ul {
+            list-style: none;
+        }
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .footer-links a:hover {
+            color: white;
+        }
+        .footer-contact {
+            flex: 1;
+            min-width: 250px;
+        }
+        .footer-contact h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.8rem;
+        }
+        .footer-contact h4::after {
+            content: "";
+            width: 40px;
+            height: 2px;
+            background-color: #3c6382;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+        .footer-contact p {
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+        }
+        .footer-contact i {
+            margin-right: 0.8rem;
+            color: #3c6382;
+        }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+        }
+        /* 移动端适配 */
+        @media (max-width: 992px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            .nav-address {
+                text-align: center;
+            }
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+            .section {
+                padding: 3rem 3%;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+            .case-content {
+                padding: 1.5rem;
+            }
+            .quote-container {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-logo">EH</div>
+            <div class="nav-name">
+                <h1>EuropeHub GmbH</h1>
+                <p>International Logistics & Supply Chain Management</p>
+            </div>
+            <div class="nav-address">
+                <p><strong>Location:</strong>  Hammfelddamm 4A, 41460 Neuss, Germany</p>
+                <p>Professional Logistics Solutions</p>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 头部横幅 - 集装箱港口背景 -->
+    <section class="hero">
+        <h2>Professional Logistics Solutions From Germany</h2>
+        <p>EuropeHub GmbH is a legally registered GmbH enterprise in Germany, focusing on freight transportation, warehousing, delivery services and supply chain management. We provide efficient and compliant cross-border logistics solutions for global customers with German-standard professionalism and service.</p>
+        <button class="hero-btn">Get Your Custom Quote</button>
+    </section>
+
+    <!-- 专业领域模块 -->
+    <section class="section">
+        <h2 class="section-title">Our Core Business</h2>
+        <p class="section-subtitle">Based on the German market, we provide one-stop logistics services covering the whole supply chain, and our business scope is in line with the registered business content of the enterprise</p>
+        <div class="services-container">
+            <div class="service-card">
+                <div class="service-icon"><i class="fa-solid fa-truck"></i></div>
+                <h3>Freight Transportation</h3>
+                <p>Professional road freight transportation services in Europe, providing door-to-door transportation solutions for general goods and special goods, with complete transportation qualifications and compliance with EU logistics regulations.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fa-solid fa-warehouse"></i></div>
+                <h3>Warehousing Services</h3>
+                <p>Provide standard and customized warehousing services in Neuss and other core areas of Germany, including goods storage, sorting, packaging and transshipment, to meet the warehousing needs of cross-border goods.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fa-solid fa-box-open"></i></div>
+                <h3>Delivery Service</h3>
+                <p>Provide efficient terminal delivery services covering the whole of Germany and even Europe, coordinate with the upstream transportation links, and ensure the timely and safe arrival of goods.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fa-solid fa-link"></i></div>
+                <h3>Supply Chain Management</h3>
+                <p>Customize integrated supply chain solutions for customers, including logistics planning, information tracking, cost control and risk management, to help customers optimize the whole logistics link.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 智能数据化系统模块 - 铁路集装箱运输背景 -->
+    <section class="section system-section">
+        <h2 class="section-title">Intelligent Digital Logistics System</h2>
+        <div class="system-container">
+            <div class="system-img">
+                <img src="https://pic1.zhimg.com/v2-9309f283dd2c9c5477821f3aa96fa434_1440w.jpg" alt="Railway Container Transportation System">
+            </div>
+            <div class="system-content">
+                <h3>Digital Management, Efficient Logistics</h3>
+                <ul class="system-features">
+                    <li>Real-time goods tracking: Support whole-process visual tracking of goods, and push location and status information in real time</li>
+                    <li>Intelligent warehousing management: Realize automatic inbound and outbound management, inventory counting and early warning</li>
+                    <li>Data analysis and optimization: Provide logistics data reports to help customers optimize transportation routes and reduce costs</li>
+                    <li>Compliance document management: Automatic generation and filing of customs declaration documents and transportation documents to ensure compliance</li>
+                </ul>
+                <button class="hero-btn" style="border-radius: 5px; padding: 0.8rem 1.5rem;">Learn About The System</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心优势模块 -->
+    <section class="section advantage-section">
+        <h2 class="section-title">Our Core Advantages</h2>
+        <div class="advantage-container">
+            <div class="advantage-item">
+                <div class="advantage-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                <h4>Legal Compliance</h4>
+                <p>Formally registered GmbH enterprise in Germany, with complete business qualifications and compliant operation</p>
+            </div>
+            <div class="advantage-item">
+                <div class="advantage-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+                <h4>Core Location</h4>
+                <p>Located in Neuss, Germany, close to important transportation hubs, with convenient logistics and transportation</p>
+            </div>
+            <div class="advantage-item">
+                <div class="advantage-icon"><i class="fa-solid fa-users"></i></div>
+                <h4>Professional Team</h4>
+                <p>Professional management team with rich experience in international logistics and supply chain operation</p>
+            </div>
+            <div class="advantage-item">
+                <div class="advantage-icon"><i class="fa-solid fa-handshake-angle"></i></div>
+                <h4>Customized Service</h4>
+                <p>Provide personalized logistics solutions according to the different needs of customers</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 客户案例模块 - 替换为电商货物运输相关图片 -->
+    <section class="case-section">
+        <h2 class="section-title">Successful Customer Cases</h2>
+        <p class="section-subtitle">We have provided professional logistics solutions for many enterprises in different industries, and the following are typical cases</p>
+        <div class="case-container">
+            <div class="case-card">
+                <img src="https://gd-hbimg.huaban.com/a7eb804d91d2c171938989d602aa52e6b1057a23b524-X7DFgw_fw1200" alt="E-commerce Container Transportation" class="case-img">
+                <div class="case-content">
+                    <span class="case-tag">E-commerce Industry</span>
+                    <h3>Cross-Border Container Logistics for E-commerce</h3>
+                    <p>A Chinese cross-border e-commerce platform needs to transport bulk e-commerce goods from China to Germany. We customized a sea-rail combined transportation solution with container consolidation, German customs clearance and warehouse distribution.</p>
+                    <div class="case-result">
+                        <div class="case-result-item">Delivery efficiency increased by 30%</div>
+                        <div class="case-result-item">Logistics cost reduced by 15%</div>
+                        <div class="case-result-item">Zero damage rate</div>
+                    </div>
+                </div>
+            </div>
+            <div class="case-card">
+                <img src="https://pic.52112.com/2019/05/29/JPG-190529_108/PBtxtWEGSi_small.jpg" alt="European Truck Delivery for E-commerce" class="case-img">
+                <div class="case-content">
+                    <span class="case-tag">E-commerce Industry</span>
+                    <h3>European Truck Delivery for E-commerce Goods</h3>
+                    <p>A German e-commerce platform needs to distribute cross-border e-commerce goods from Neuss warehouse to various European countries. We provided door-to-door truck transportation services with real-time tracking.</p>
+                    <div class="case-result">
+                        <div class="case-result-item">Order fulfillment within 48h</div>
+                        <div class="case-result-item">Coverage of 20+ European countries</div>
+                        <div class="case-result-item">Customer satisfaction 96%</div>
+                    </div>
+                </div>
+            </div>
+            <div class="case-card">
+                <img src="https://pic.52112.com/180705/JPG-180705_428/prEUxptTv4_small.jpg" alt="Railway Container for E-commerce" class="case-img">
+                <div class="case-content">
+                    <span class="case-tag">E-commerce Industry</span>
+                    <h3>Railway Container Logistics for E-commerce</h3>
+                    <p>An EU e-commerce enterprise needs to transport seasonal e-commerce goods from Germany to Eastern Europe. We provided railway container transportation solutions with fixed schedules and temperature control options.</p>
+                    <div class="case-result">
+                        <div class="case-result-item">72h emergency delivery</div>
+                        <div class="case-result-item">100% compliance with EU logistics standards</div>
+                        <div class="case-result-item">On-time delivery rate 100%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 获取报价模块（替代原联系我们） -->
+    <section class="section">
+        <h2 class="section-title">Get A Custom Logistics Quote</h2>
+        <div class="quote-container">
+            <div class="quote-form">
+                <h3>Tell Us About Your Logistics Needs</h3>
+                <p>Fill out the form below and our logistics experts will contact you within 24 hours with a personalized quote.</p>
+                
+                <div class="form-group">
+                    <label for="name">Your Full Name</label>
+                    <input type="text" id="name" placeholder="e.g. John Smith">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Business Email Address</label>
+                    <input type="email" id="email" placeholder="e.g. john@company.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="company">Company Name</label>
+                    <input type="text" id="company" placeholder="e.g. ABC Trading GmbH">
+                </div>
+                
+                <div class="form-group">
+                    <label for="service-type">Type of Service Required</label>
+                    <select id="service-type">
+                        <option value="" selected disabled>Select a service type</option>
+                        <option value="freight">Container Transportation</option>
+                        <option value="warehousing">Warehousing Services</option>
+                        <option value="delivery">Truck Delivery Service</option>
+                        <option value="supply-chain">Railway Container Logistics</option>
+                        <option value="custom">Custom E-commerce Solution</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="origin">Shipment Origin</label>
+                    <input type="text" id="origin" placeholder="e.g. Shanghai, China / Berlin, Germany">
+                </div>
+                
+                <div class="form-group">
+                    <label for="destination">Shipment Destination</label>
+                    <input type="text" id="destination" placeholder="e.g. Munich, Germany / Paris, France">
+                </div>
+                
+                <div class="form-group">
+                    <label for="requirements">Detailed Logistics Requirements</label>
+                    <textarea id="requirements" placeholder="Please describe your logistics needs in detail, including shipment volume, timeline, special requirements, etc."></textarea>
+                </div>
+                
+                <button type="submit" class="form-btn">Submit Request & Get Quote</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 合作伙伴模块 -->
+    <section class="partner-section">
+        <h2 class="section-title" style="margin-bottom: 2rem;">Our Partners</h2>
+        <div class="partner-container">
+            <div class="partner-logo">Raben</div>
+            <div class="partner-logo">Emons</div>
+            <div class="partner-logo">CargoBoard</div>
+            <div class="partner-logo">DHL Freight</div>
+            <div class="partner-logo">Amazon Freight</div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">
+                <div class="nav-logo">EH</div>
+                <p>EuropeHub GmbH is a professional international logistics enterprise registered in Germany, committed to providing customers with high-quality, compliant and efficient logistics and supply chain solutions for cross-border e-commerce goods.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Our Services</a></li>
+                    <li><a href="#">Intelligent System</a></li>
+                    <li><a href="#">Customer Cases</a></li>
+                    <li><a href="#">Get A Quote</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>General Information</h4>
+                <p><i class="fa-solid fa-location-dot"></i> Hammfelddamm 4A, 41460 Neuss, Germany</p>
+                <p><i class="fa-solid fa-clock"></i> Business Hours: Mon-Fri 9:00-17:00 CET</p>
+                <p><i class="fa-solid fa-shield-halved"></i> Legally Registered GmbH in Germany</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 EuropeHub GmbH. All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
